@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            line-height: 300px;
+            padding: 20px;
+            border: 20px solid lightcoral;
+            border-radius: 10px;
+            background: lightgray;
+            font-size: 18px;
+            font-weight: bold;
+            overflow: scroll;
+        }
+
+        .content {
+            background: #337ab7;
+        }
+
+        .over-con {
+            width: 600px;
+            height: 600px;
+        }
+
+        /*定义滚动条高宽及背景
+         高宽分别对应横竖滚动条的尺寸*/
+        .box1::-webkit-scrollbar {
+            width: 16px;
+            height: 16px;
+            background-color: #F5F5F5;
+        }
+
+        /*定义滚动条轨道
+         内阴影+圆角*/
+        .box1::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+
+        /*定义滑块
+         内阴影+圆角*/
+        .box1::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+            background-color: #555;
+        }
+
+        .desc {
+            margin-top: 10px;
+        }
+
+        .desc-item {
+            width: 800px;
+            border: 1px solid lightblue;
+            padding-left: 20px;
+        }
+
+        .desc-item .val {
+            color: red;
+            margin-left: 10px;
+        }
+
+        .desc-item .measurement {
+            color: #337ab7;
+        }
+
+        #box3:before {
+            content: '';
+            display: block;
+            background: lightseagreen;
+            height: 100px;
+        }
+
+        #box3:after {
+            content: '';
+            display: block;
+            background: lightseagreen;
+            height: 100px;
+        }
+
+        .con5 {
+            margin-top: 50px;
+            border: 20px solid lightcoral;
+            padding: 20px;
+        }
+
+
+        .desc4-5 {
+            margin-top: 20px;
+        }
+
+        #box5 {
+            position: relative;
+        }
+
+        #box6{
+            position: relative;
+            border: 20px solid lightcoral;
+            padding: 20px;
+        }
+
+        .con6-1,.con6-2{
+            margin: 10px;
+            border: 10px solid lightseagreen;
+            padding: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+<hr>
+
+<div id="box1" class="box box1">
+    <div class="content over-con">
+        $box1
+    </div>
+</div>
+
+<div class="desc desc1">
+    <div class="desc-item">
+        <h3 class="measurement">offsetWidth = contentW + (paddingLeft + paddingRight) + borderW</h3>
+        <h3 class="measurement">offsetHeight = contentH + (paddingTop + paddingBottom) + borderH</h3>
+        <h3>$box1.offsetWidth:<span class="offset-width val"></span></h3>
+        <h3>$box1.offsetHeight:<span class="offset-height val"></span></h3>
+    </div>
+    <div class="desc-item">
+        <h3 class="measurement">clientWidth = contentW + (paddingLeft + paddingRight) - scrollbarW (if present).</h3>
+        <h3 class="measurement">clientHeight = contentH + (paddingTop + paddingBottom) - scrollbarH (if present).</h3>
+        <h3>$box1.clientWidth:<span class="client-width val"></span></h3>
+        <h3>$box1.clientHeight:<span class="client-height val"></span></h3>
+    </div>
+    <div class="desc-item">
+        <h3 class="measurement">The scrollWidth value is equal to the minimum width the element would require in order
+            to fit all the content in the viewport without using a horizontal scrollbar.</h3>
+        <h3 class="measurement">If the element's content can fit without a need for vertical scrollbar, its scrollHeight
+            is equal to clientHeight</h3>
+        <h3 class="measurement">scrollWidth = scrollContentW + (paddingLeft)</h3>
+        <h3 class="measurement">scrollHeight = scrollContentH + (paddingTop + paddingBottom)</h3>
+        <h3>$box1.scrollWidth:<span class="scroll-width val"></span></h3>
+        <h3>$box1.scrollHeight:<span class="scroll-height val"></span></h3>
+    </div>
+</div>
+
+<hr>
+<div id="box2" class="box">
+    <div class="content">
+        $box2
+    </div>
+</div>
+<div class="desc desc2">
+    <div class="desc-item">
+        <h3>$box2.offsetWidth:<span class="offset-width val"></span></h3>
+        <h3>$box2.offsetHeight:<span class="offset-height val"></span></h3>
+    </div>
+    <div class="desc-item">
+        <h3>$box2.clientWidth:<span class="client-width val"></span></h3>
+        <h3>$box2.clientHeight:<span class="client-height val"></span></h3>
+    </div>
+    <div class="desc-item">
+        <h3>$box2.scrollWidth:<span class="scroll-width val"></span></h3>
+        <h3>$box2.scrollHeight:<span class="scroll-height val"></span></h3>
+    </div>
+</div>
+
+<hr>
+<div id="box3" class="box">
+    <div class="content">
+        $box3
+    </div>
+</div>
+<div class="desc desc3">
+    <div class="desc-item">
+        <h3>$box3.offsetWidth:<span class="offset-width val"></span></h3>
+        <h3>$box3.offsetHeight:<span class="offset-height val"></span></h3>
+    </div>
+    <div class="desc-item">
+        <h3>$box3.clientWidth:<span class="client-width val"></span></h3>
+        <h3>$box3.clientHeight:<span class="client-height val"></span></h3>
+    </div>
+    <div class="desc-item">
+        <h3>$box3.scrollWidth:<span class="scroll-width val"></span></h3>
+        <h3>$box3.scrollHeight:<span class="scroll-height val"></span></h3>
+    </div>
+</div>
+<hr>
+
+<div id="box4" class="box">
+    <div class="content con4">
+        $box4-con4
+    </div>
+</div>
+<div id="box5" class="box">
+    <div class="content con5">
+        $box5-con5
+    </div>
+</div>
+
+<div class="desc desc4-5">
+    <div class="desc-item desc-4">
+        <h3>con4</h3>
+        <h3>$con4.offsetParent:<span class="offset-p val"></span></h3>
+        <h3>$con4.offsetLeft:<span class="offset-l val"></span></h3>
+        <h3>$con4.offsetTop:<span class="offset-t val"></span></h3>
+    </div>
+    <div class="desc-item desc-5">
+        <h3>con5</h3>
+        <h3>$con5.offsetParent:<span class="offset-p val"></span></h3>
+        <h3>$con5.offsetLeft:<span class="offset-l val"></span></h3>
+        <h3>$con5.offsetTop:<span class="offset-t val"></span></h3>
+    </div>
+</div>
+<hr>
+<div style="padding-top: 70px;">
+    <span id="box6">
+        <span class="con6-1">123</span>
+        <span class="con6-2">456</span>
+    </span>
+    <div class="desc desc6" style="padding-top: 60px;">
+        <div class="desc-item desc-6-1">
+            <h3>con6_1</h3>
+            <h3>$con6_1.offsetParent:<span class="offset-p val"></span></h3>
+            <h3>$con6_1.offsetLeft:<span class="offset-l val"></span></h3>
+            <h3>$con6_1.offsetTop:<span class="offset-t val"></span></h3>
+        </div>
+        <div class="desc-item desc-6-2">
+            <h3>con6_2</h3>
+            <h3>$con6_2.offsetParent:<span class="offset-p val"></span></h3>
+            <h3>$con6_2.offsetLeft:<span class="offset-l val"></span></h3>
+            <h3>$con6_2.offsetTop:<span class="offset-t val"></span></h3>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // box1
+    let $box1 = document.getElementById("box1");
+
+    document.querySelector('.desc1 .offset-width').innerText = $box1.offsetWidth;
+    document.querySelector('.desc1 .offset-height').innerText = $box1.offsetHeight;
+
+    document.querySelector('.desc1 .client-width').innerText = $box1.clientWidth;
+    document.querySelector('.desc1 .client-height').innerText = $box1.clientHeight;
+
+    document.querySelector('.desc1 .scroll-width').innerText = $box1.scrollWidth;
+    document.querySelector('.desc1 .scroll-height').innerText = $box1.scrollHeight;
+
+    // box2
+    let $box2 = document.getElementById("box2");
+
+    document.querySelector('.desc2 .offset-width').innerText = $box2.offsetWidth;
+    document.querySelector('.desc2 .offset-height').innerText = $box2.offsetHeight;
+
+    document.querySelector('.desc2 .client-width').innerText = $box2.clientWidth;
+    document.querySelector('.desc2 .client-height').innerText = $box2.clientHeight;
+
+    document.querySelector('.desc2 .scroll-width').innerText = $box2.scrollWidth;
+    document.querySelector('.desc2 .scroll-height').innerText = $box2.scrollHeight;
+
+    // box3
+    let $box3 = document.getElementById("box3");
+
+    document.querySelector('.desc3 .offset-width').innerText = $box3.offsetWidth;
+    document.querySelector('.desc3 .offset-height').innerText = $box3.offsetHeight;
+
+    document.querySelector('.desc3 .client-width').innerText = $box3.clientWidth;
+    document.querySelector('.desc3 .client-height').innerText = $box3.clientHeight;
+
+    document.querySelector('.desc3 .scroll-width').innerText = $box3.scrollWidth;
+    document.querySelector('.desc3 .scroll-height').innerText = $box3.scrollHeight;
+
+    // box4 5
+    let $con4 = document.querySelector('.con4');
+    let $con5 = document.querySelector('.con5');
+
+    document.querySelector('.desc4-5 .desc-4 .offset-p').innerText = $con4.offsetParent.tagName;
+    document.querySelector('.desc4-5 .desc-4 .offset-l').innerText = $con4.offsetLeft;
+    document.querySelector('.desc4-5 .desc-4 .offset-t').innerText = $con4.offsetTop;
+
+    document.querySelector('.desc4-5 .desc-5 .offset-p').innerText = $con5.offsetParent.tagName;
+    document.querySelector('.desc4-5 .desc-5 .offset-l').innerText = $con5.offsetLeft;
+    document.querySelector('.desc4-5 .desc-5 .offset-t').innerText = $con5.offsetTop;
+
+    // box6
+    let $con6_1 = document.querySelector('.con6-1');
+    let $con6_2 = document.querySelector('.con6-2');
+
+    document.querySelector('.desc-6-1 .offset-p').innerText = $con6_1.offsetParent.tagName;
+    document.querySelector('.desc-6-1 .offset-l').innerText = $con6_1.offsetLeft;
+    document.querySelector('.desc-6-1 .offset-t').innerText = $con6_1.offsetTop;
+
+    document.querySelector('.desc-6-2 .offset-p').innerText = $con6_2.offsetParent.tagName;
+    document.querySelector('.desc-6-2 .offset-l').innerText = $con6_2.offsetLeft;
+    document.querySelector('.desc-6-2 .offset-t').innerText = $con6_2.offsetTop;
+
+
+
+
+</script>
+</body>
+</html>
