@@ -338,6 +338,6 @@ counterObj.printNextCount();
 - 导出对象用`module.exports`,导出多个方法和变量用`exports`
 
 ## 7 参考文献
-- [入浅出Node.js](https://item.jd.com/11355978.html)
+- [深入浅出Node.js](https://item.jd.com/11355978.html)
 - [nodejs模块中exports和module.exports的区别](https://www.cnblogs.com/ooooevan/p/5897586.html)
 - [终于讲清楚了nodejs中exports和module.exports的区别](https://www.imooc.com/article/34483)
