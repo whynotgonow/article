@@ -206,5 +206,133 @@ function require2(mod) {
 ```
 
 ## 6 `exports` VS `module.exports`
-通过exports和module.exports对外公开的方法都可以访问，但有区别。
+通过`exports`和`module.exports`对外公开的方法都可以访问，但有区别。
 
+### 6.1 联系
+`exports` 仅仅是 `module.exports` 的一个地址引用。
+
+nodejs 只会导出 `module.exports` 的指向，如果 `exports` 指向变了，那就仅仅是 exports 不在指向 `module.exports` ，于是不会再被导出。
+
+举个栗子，如下：
+
+```js
+
+// test3.js
+let counter = 0;
+exports.printNextCount = function () {
+  counter += 2;
+  console.log(counter);
+}
+
+module.exports = function () {
+  counter += 10;
+  this.printNextCount = function () {
+    console.log(counter)
+  }
+}
+
+console.log(exports);
+console.log(module.exports);
+console.log(exports === module.exports);
+/* 
+  { printNextCount: [Function] }
+  [Function]
+  false
+*/
+
+
+// test3_require.js
+let Counter = require('./test3.js')
+
+let counterObj = new Counter();
+counterObj.printNextCount();
+/* 
+  10
+*/
+
+```
+
+
+### 6.2 区别
+#### 6.2.1 根本区别
+- **exports** 返回的是模块函数
+- **module.exports** 返回的是模块对象本身，返回的是一个类
+
+举个栗子，入下：
+```js
+// test1.js
+let counter = 0;
+exports.temp = function () {
+  counter += 10;
+  this.printNextCount = function () {
+    console.log(counter);
+  }
+}
+
+console.log(exports);
+console.log(module.exports);
+console.log(exports === module.exports);
+/* 
+{ temp: [Function] }  // 是一个函数可以直接调用
+{ temp: [Function] }  // 是一个函数可以直接调用
+true
+*/
+
+// test1_require.js
+// 无论是直接调用，还是new一个对象再调用，都报错
+let counter = require('./test1')
+
+// 直接调用
+console.log(counter)          // { temp: [Function] }
+counter.printNextCount();     // TypeError: counter.printNextCount is not a function
+
+// new一个对象再调用
+let obj = new counter()       // TypeError: counter is not a constructor
+obj.printNextCount();
+```
+
+#### 6.2.2 使用区别
+- **exports** 的方法可以直接调用
+- **module.exports** 需要new对象之后才可以调用
+
+> 使用这样的好处是**exports**只能对外暴露单个函数，但是**module.exports**却能暴露一个类
+
+
+举个栗子，如下：
+```js
+// test2.js
+let counter = 0;
+module.exports = function () {
+  counter += 10;
+  this.printNextCount = function () {
+    console.log(counter);
+  }
+}
+
+console.log(exports);
+console.log(module.exports);
+console.log(exports === module.exports);
+/* 
+{}
+[Function]  // 是一个类，需要new才能调用
+false
+*/
+
+
+// test2_require.js
+let Counter = require('./test2');
+
+// 直接调用报错
+// console.log(Counter.printNextCount())   // TypeError: Counter.printNextCount is not a function
+
+// new一个对象再调用
+let counterObj = new Counter();
+counterObj.printNextCount();
+/* 
+  10
+*/
+```
+
+### 6.3 使用建议
+- 最好别分别定义`module.exports`和`exports`
+- 导出对象用`module.exports`,导出多个方法和变量用`exports`
