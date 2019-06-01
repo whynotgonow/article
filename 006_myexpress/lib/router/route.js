@@ -9,6 +9,7 @@ function Route(path) {
 
 methods.forEach(function (method) {
     Route.prototype[method] = function () {
+        // 将arguments类数组 转化为数组
         let handlers = Array.prototype.slice.call(arguments);
         for (let i = 0; i < handlers.length; i++) {
             let layer = new Layer('/', handlers[i]);
