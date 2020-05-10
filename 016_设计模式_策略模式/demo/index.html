@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="xxx" id="registerForm" method="POST"> 用户名： <input type="text" name="userName" /> 密码：<input type="text"
+      name="passWord" /> 手机号：<input type="text" name="phoneNumber" />
+    <button>提交</button>
+  </form>
+
+  <script src="./index.js"></script>
+  <!-- <script>
+    let registerForm = document.getElementById("registerForm")
+
+    registerForm.onsubmit = function () {
+      if (registerForm.userName.value === "") {
+        alert("用户名不得为空！")
+        return false
+      }
+
+      if (registerForm.passWord.value.length < 6) {
+        alert("密码长度不能少于6位！")
+        return false
+      }
+
+      if (!/^1[3456789]\d{9}$/.test(registerForm.phoneNumber.value)) {
+        alert("手机号码格式不正确！")
+        return false
+      }
+
+    }
+  </script> -->
+</body>
+
+</html>
